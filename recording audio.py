@@ -13,6 +13,8 @@ format = pyaudio.paInt16
 channels = 1 # monoaudio
 rate = 44100
 Output_Filename = "Recorded.wav"
+
+
  
 p = pyaudio.PyAudio() # pyaudio obj
 
