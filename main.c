@@ -1,3 +1,4 @@
+/*Unit test for vector operations of cutil*/
 #include "cutil.h"
 
 #define maxBuff 20'000i32
