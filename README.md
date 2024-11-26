@@ -1,2 +1,2 @@
-# Voice-recognition-
-A high-performance voice recognition system built to accurately identify spoken commands and transcribe speech to text. This project leverages machine learning models and natural language processing (NLP) techniques to deliver fast and reliable voice recognition across various applications.
+# Voice & facial-recognition-
+This project is a security system integrating voice and facial recognition technologies. It accurately identifies individuals and transcribes speech to text to authenticate passwords for access. Leveraging machine learning models, along with C and Python, this system ensures fast, reliability, and secure identification. Designed for diverse applications, it provides robust performance across different environments, enhancing security standards through precise biometric verification
