@@ -6,7 +6,7 @@
 - **🎯 Unmatched Accuracy:** Precisely identifies individuals, ensuring **high security** across all use cases.  
 - **🗣️ Speech-to-Text Authentication:** Transcribes spoken passwords to text effortlessly ➡️📝, adding an extra layer of protection.  
 - **🚀 Lightning-Fast Performance:** Powered by **C** and **Python** 🐍 for blazing speed and efficient processing.  
-- **🤖 Machine Learning Powerhouse:** Leverages **advanced ML models** (e.g., VGGVox, ECAPA-TDNN) for robust biometric verification.  
+- **🤖 Machine Learning Powerhouse:** Leverages **advanced ML models** (e.g., VGGVox) for robust biometric verification.  
 - **🌍 Versatile & Reliable:** Performs seamlessly in **varied environments** — whether it's an office, home, or outdoor setting.  
 - **🔐 Multi-Layer Security:** Combines voice 🗣️, face 🖼️, and password 🔑 authentication for **enhanced protection**.  
 
