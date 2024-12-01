@@ -92,4 +92,7 @@ print(f"Extracted Features: {X_test}")
 # ============== MAKE PREDICTION ==============
 prediction = model.predict(X_test)    
 gender = 'Male' if prediction[0] > 0.5   else 'Female'    
-print(f"Predicted Gender: {gender}")  
+print(f"Predicted Gender: {gender}")
+#===========================================================================================
+
+
