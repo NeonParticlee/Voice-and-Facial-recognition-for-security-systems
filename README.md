@@ -1,7 +1,7 @@
 # 🔒 Voice & Facial Recognition Security System 🧠🎙️📸  
 
 **Welcome to the future of security!** This project combines **state-of-the-art voice recognition** 🎤 and **facial recognition** 🖼️ technologies to create a **fast, reliable, and secure** identity verification system.  
-**-------------------------------Special Thanks To STB-------------------------------**
+**-----------Special Thanks To STB-----------**
 **check out their work: https://github.com/nothings/stb/tree/master
 it is a free open source project that provides a suite containing tonnes of funcitonality for programming in C**
 ### ✨ **Key Features:**  
