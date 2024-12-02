@@ -23,7 +23,7 @@ stream = p.open(format=format,  # new audio stream
                 frames_per_buffer=chunk)
 
 
-  
+  #
 frames = [] # stores audio chunks 
 print("Press SPACE to start recording")
 keyboard.wait('space')  # wait for user to press space to start recording 
@@ -90,9 +90,15 @@ X_test = extract_frequency_features(Output_Filename)
 print(f"Extracted Features: {X_test}")
 
 # ============== MAKE PREDICTION ==============
+
 prediction = model.predict(X_test)    
-gender = 'Male' if prediction[0] > 0.5   else 'Female'    
+gender = 'Male' if prediction[0] < 0.5   else 'Female'
 print(f"Predicted Gender: {gender}")
+
 #===========================================================================================
 
 
+
+#  x =male and voice known  =  welcome back sir  /// female  == welcome back madam
+
+#    !x == voice non known male // female   ?????
