@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Register Page style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
+
+<body>
+        <section class="home">
+
+            <div class="text">
+                <h3>Welcome to</h3>
+                <h1>Voice & Facial Recognition App</h1>
+                <p>Your cutting-edge web application that leverages voice and facial recognition technologies for secure and seamless user interaction.</p>
+                <button class="button" id="form-open" title="Login">Login</button>
+            </div>
+
+            <div class="form_container">
+                <i class="uil uil-times form_close"></i>
+                <div id="login_form">
+                    <form action="#">
+                        <h2>Sign Up</h2>
+                        <div class="input_box">
+                            <input type="text" placeholder="Enter your username" required>
+                            <i class='bx bxs-user'></i>
+                        </div>
+                        <div class="input_box">
+                            <input type="email" placeholder="Enter your email" required>
+                            <i class="uil uil-envelope-alt email"></i>
+                        </div>
+                        <div class="input_box">
+                            <input type="password" placeholder="Enter your password" required id="password">
+                            <i class="uil uil-lock password"></i>
+                            <i class="uil uil-eye-slash pw_hide"></i>
+                        </div>
+                        <div class="input_box">
+                            <input type="password" placeholder="Confirm your password" required id="confirmPassword">
+                            <i class="uil uil-lock password"></i>
+                            <i class="uil uil-eye-slash pw_hide"></i>
+                        </div>
+                        <button class="button">Sign Up</button>
+                        <p id="error_message" class="error"></p>
+                        <div class="login_signup">Already have an account? <a href="#" id="signup">Sign In</a>
+                        </div>
+                    </form>
+                </div>
+    
+                <!--Sign in-->
+                <div id="signup_form">
+                    <form>
+                        <h2>Sign In</h2>
+                        <div class="input_box">
+                            <input type="email" placeholder="Enter your email" id="sigiin_email" required>
+                            <i class="uil uil-envelope-alt email"></i>
+                        </div>
+                        <div class="input_box">
+                            <input type="password" placeholder="Create password" id="sigiin_pass" required>
+                            <i class="uil uil-lock password"></i>
+                            <i class="uil uil-eye-slash pw_hide"></i>
+                        </div>
+                        <button class="button">Sign In</button>
+                        <div class="login_signup">Don't have an account? <a href="#" id="login">Sign Up</a></div>
+                    </form>
+                </div>
+    
+            </div>
+        </section>
+        <script src="Register Page script.js"></script>
+
+</body>
+
+</html>
