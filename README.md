@@ -1,7 +1,7 @@
 # 🔒 Voice & Facial Recognition Security System 🧠🎙️📸  
 
 **Welcome to the future of security!** This project combines **state-of-the-art voice recognition** 🎤 and **facial recognition** 🖼️ technologies to create a **fast, reliable, and secure** identity verification system.  
-****************Special Thanks To STB****************
+**-------------------------------Special Thanks To STB-------------------------------**
 ### ✨ **Key Features:**  
 - **🎯 Unmatched Accuracy:** Precisely identifies individuals, ensuring **high security** across all use cases.  
 - **🗣️ Speech-to-Text Authentication:** Transcribes spoken passwords to text effortlessly ➡️📝, adding an extra layer of protection.  
