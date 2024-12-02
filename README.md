@@ -1,7 +1,7 @@
 # 🔒 Voice & Facial Recognition Security System 🧠🎙️📸  
 
 **Welcome to the future of security!** This project combines **state-of-the-art voice recognition** 🎤 and **facial recognition** 🖼️ technologies to create a **fast, reliable, and secure** identity verification system.  
-
+********************************************Special Thanks To STB****************************************************************
 ### ✨ **Key Features:**  
 - **🎯 Unmatched Accuracy:** Precisely identifies individuals, ensuring **high security** across all use cases.  
 - **🗣️ Speech-to-Text Authentication:** Transcribes spoken passwords to text effortlessly ➡️📝, adding an extra layer of protection.  
@@ -11,7 +11,7 @@
 - **🔐 Multi-Layer Security:** Combines voice 🗣️, face 🖼️, and password 🔑 authentication for **enhanced protection**.  
 
 ### 🛠️ **Technologies Used:**  
-- **🎛️ Tools:** torch, librosa, cosine, scikit-learn.  
+- **🎛️ Tools:** (Python: torch, librosa, cosine, scikit-learn) (C: STB suite for image manipulation and writing).  
 - **🎥 Hardware Integration:** Supports webcam and microphone setups for easy deployment.  
 - **💾 Backend:** Optimized algorithms for fast inference, with support for **edge devices** 🌐.  
 - **📊 Data Science:** Secure handling of embeddings and model training.  
