@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice and Face Recognition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="welcome-overlay">
+        <div class="welcome-content">
+            <h1>Welcome To Voice & Facial Recognition App</h1>
+            <p>Your gateway to a smarter experience!</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Voice Recognition Section -->
+        <div class="voice-recognition box">
+            <h2>Voice Recognition</h2>
+            <button id="record-btn" class="btn">Start Recording</button>
+            <p id="status_1">Press the button to start recording.</p>
+        </div>
+
+        <!-- Face Recognition Section -->
+        <div class="face-recognition box">
+            <h2>Face Recognition</h2>
+            <video id="camera" autoplay></video>
+            <canvas id="canvas" style="display:none;"></canvas>
+            <button id="capture-btn" class="btn">Capture Image</button>
+            <p id="status_2">Press the button to start facing.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Welcome Overlay Style */
+.welcome-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.welcome-overlay.hidden {
+    display: none; /* Hide the overlay */
+}
+
+.welcome-content {
+    text-align: center;
+    color: black;
+    animation: fadeIn 1s ease-in-out; /* Add a fade-in animation */
+}
+
+.welcome-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.welcome-content p {
+    font-size: 1.4rem;
+    color: #555;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 100px;
+    max-width: 1000px;
+    width: 100%;
+    padding: 30px;
+    background-color: #000;
+    border-radius: 8px;
+    box-shadow: 4px 8px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.box {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.box h2 {
+    margin-bottom: 10px;
+}
+
+.voice-recognition {
+    position: relative;
+    top: 90px;
+    width: 45%;
+}
+
+.face-recognition {
+    position: relative;
+    width: 45%;
+}
+
+#camera {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid gray;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+#status {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const welcomeOverlay = document.querySelector(".welcome-overlay");
+    const recordBtn = document.getElementById("record-btn");
+    const captureBtn = document.getElementById("capture-btn");
+    const camera = document.getElementById("camera");
+    const canvas = document.getElementById("canvas");
+    const status_1 = document.getElementById("status_1");
+    const status_2 = document.getElementById("status_2");
+
+    let mediaRecorder;
+    let audioChunks = [];
+
+    // Hide the welcome message after 7 seconds
+    setTimeout(() => {
+        welcomeOverlay.classList.add("hidden");
+    }, 7000);
+
+    // Voice Recognition Functionality
+    recordBtn.addEventListener("click", async () => {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            alert("Your browser does not support audio recording.");
+            return;
+        }
+
+        if (!mediaRecorder || mediaRecorder.state === "inactive") {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+
+            mediaRecorder.onstart = () => {
+                audioChunks = [];
+                recordBtn.textContent = "Stop Recording";
+                status_1.textContent = "Recording... Speak into your microphone.";
+            };
+
+            mediaRecorder.ondataavailable = (event) => {
+                audioChunks.push(event.data);
+            };
+
+            mediaRecorder.onstop = async () => {
+                recordBtn.textContent = "Start Recording";
+                status_1.textContent = "Recording stopped. Sending audio to the server...";
+
+                const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+                const audioSent = await sendToServer(audioBlob, "audio");
+
+                if (audioSent) {
+                    alert("Audio sent successfully!");
+                } else {
+                    status_1.textContent = "Error occurred while transferring audio.";
+                    alert("WARNING! ERROR");
+                }
+            };
+
+            mediaRecorder.start();
+        } else {
+            mediaRecorder.stop();
+        }
+    });
+
+    // Face Recognition Functionality
+    captureBtn.addEventListener("click", async () => {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            alert("Your browser does not support video capture.");
+            return;
+        }
+
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            camera.srcObject = stream;
+
+            setTimeout(async () => {
+                const context = canvas.getContext("2d");
+                canvas.width = camera.videoWidth;
+                canvas.height = camera.videoHeight;
+                context.drawImage(camera, 0, 0, canvas.width, canvas.height);
+
+                const imageBlob = await new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg"));
+                const imageSent = await sendToServer(imageBlob, "image");
+
+                if (imageSent) {
+                    alert("Image captured and sent successfully!");
+                } else {
+                    status_2.textContent = "Error occurred while sending image.";
+                    alert("WARNING! ERROR");
+                }
+
+                stream.getTracks().forEach((track) => track.stop()); // Stop the camera
+            }, 5000); // Wait for 5 seconds
+        } catch (error) {
+            console.error("Error accessing the camera:", error);
+            alert("Unable to access the camera.");
+        }
+    });
+
+    // Function to send media (audio/image) to the server
+    async function sendToServer(blob, type) {
+        try {
+            const formData = new FormData();
+            formData.append(type, blob, type === "audio" ? "recording.webm" : "capture.jpg");
+
+            const response = await fetch("http://localhost:5000/upload", {
+                method: "POST",
+                body: formData,
+            });
+
+            return response.ok;
+        } catch (error) {
+            console.error("Error sending data to server:", error);
+            return false;
+        }
+    }
+});
