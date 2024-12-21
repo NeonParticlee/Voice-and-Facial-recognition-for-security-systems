@@ -2,7 +2,7 @@ name: Tesing_mod
 
 on:
   push:
-    branches: [ main ]
+    branches: [ user-recognition ]
   pull_request:
     branches: [ main ]
 jobs:
