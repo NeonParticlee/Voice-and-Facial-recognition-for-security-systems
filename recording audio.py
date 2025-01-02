@@ -13,9 +13,9 @@ def connect_to_db():
     try:
         conn = psycopg2.connect(
             host="localhost",
-            database="my_database",  # Replace with your actual database name
-            user="farah",  # Replace with your actual username
-            password="postgres"  # Replace with your actual password
+            database="my_database",  
+            user="farah", 
+            password="postgres"  
         )
         return conn
     except Exception as e:
@@ -112,9 +112,7 @@ def verify_voice_stored(recorded_voice_file, stored_voice_sample):
         # Proceed with comparing the two voice samples
         print(f"Stored voice sample found at: {temp_file.name}")
         
-        # For simplicity, we can use a simple string comparison of the audio files for now
-        # A more complex approach might involve comparing feature vectors of the audio signals
-
+        
         # Here we use speech recognition to extract text from both samples and compare them
         recorded_text = recognize_audio(recorded_voice_file)
         stored_text = recognize_audio(temp_file.name)
