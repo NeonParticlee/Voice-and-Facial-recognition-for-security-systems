@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice and Face Recognition App</title>
+    <link rel="stylesheet" href="{% static 'css/Index_style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+    <main class="container">
+        <div class="timer-box" id="timer-box">
+            <p class="timer" id="timer">10</p>
+        </div>
+
+        <section class="box recognition-box" id="voice-recognition-box">
+            <h2>Voice Recognition</h2>
+            <div class="button-group">
+                <button id="record-btn" class="btn primary-btn">
+                    <i class="fa-solid fa-microphone"></i>
+                    Start Recording
+                </button>
+                <button id="stop-btn" class="btn secondary-btn">
+                    <i class="fa-solid fa-stop"></i>
+                    Stop Recording
+                </button>
+            </div>
+            <p id="status-1" class="status">Press the button to start recording.</p>
+        </section>
+
+        <section class="box recognition-box" id="face-recognition-box">
+            <h2>Face Recognition</h2>
+            <div class="media-container">
+                <video id="camera" autoplay playsinline muted></video>
+                <canvas id="canvas"></canvas>
+            </div>
+            <div class="input-group">
+                <input type="text" id="name-input" placeholder="Enter your name" required>
+            </div>
+            <button id="capture-btn" class="btn primary-btn">
+                <i class="fa-solid fa-camera"></i>
+                Capture Face
+            </button>
+            <p id="status-2" class="status">Press the button to start facing.</p>
+        </section>
+    </main>
+
+    <nav class="navigation-controls">
+        <button id="previous-btn" class="nav-btn">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button id="next-btn" class="nav-btn">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </nav>
+
+    <script src="{% static 'js/index_script.js' %}"></script>
+</body>
+</html>
