@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/RegisterPage.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
+
+<body>
+    <div class="welcome-overlay">
+        <div class="welcome-content">
+            <h1>Welcome To Voice & Facial Recognition App</h1>
+        </div>
+    </div>
+    <section class="home">
+        <div class="text">
+            <h1>Voice & Facial Recognition App</h1>
+            <p>Your cutting-edge web application that leverages voice and facial recognition technologies for secure and seamless user interaction.</p>
+            <button class="button" id="form-open" title="Login">Login</button>
+        </div>
+
+        <div class="form_container">
+    <i class="uil uil-times form_close"></i>
+    <div id="login_form">
+        <form>
+            <h2>Sign In</h2>
+            <div class="input_box">
+                <input type="email" placeholder="Enter your email" id="signin_email" required>
+                <i class="uil uil-envelope-alt email"></i>
+            </div>
+            <div class="input_box">
+                <input type="password" placeholder="Enter password" id="signin_pass" required>
+                <i class="uil uil-lock password"></i>
+                <i class="uil uil-eye-slash pw_hide"></i>
+            </div>
+            <button class="button">Sign In</button>
+            <div class="login_signup">Don't have an account? <a href="#" id="signup">Sign Up</a></div>
+        </form>
+    </div>
+
+    <div id="signup_form" style="display: none;">
+        <form>
+            <h2>Sign Up</h2>
+            <div class="input_box">
+                <input type="text" placeholder="Enter your username" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input_box">
+                <input type="email" placeholder="Enter your email" required>
+                <i class="uil uil-envelope-alt email"></i>
+            </div>
+            <div class="input_box">
+                <input type="password" placeholder="Create password" required id="password">
+                <i class="uil uil-lock password"></i>
+                <i class="uil uil-eye-slash pw_hide"></i>
+            </div>
+            <div class="input_box">
+                <input type="password" placeholder="Confirm password" required id="confirmPassword">
+                <i class="uil uil-lock password"></i>
+                <i class="uil uil-eye-slash pw_hide"></i>
+            </div>
+            <button class="button">Sign Up</button>
+            <p id="error_message" class="error"></p>
+            <div class="login_signup">Already have an account? <a href="#" id="login">Sign In</a></div>
+        </form>
+    </div>
+</div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const formOpenBtn = document.querySelector("#form-open"),
+        home = document.querySelector(".home"),
+        formContainer = document.querySelector(".form_container"),
+        formCloseBtn = document.querySelector(".form_close"),
+        pwShowHide = document.querySelectorAll(".pw_hide"),
+        signUpLink = document.querySelector("#signup"),
+        loginLink = document.querySelector("#login"),
+        loginForm = document.querySelector("#login_form"),
+        signUpForm = document.querySelector("#signup_form");
+
+    formOpenBtn.addEventListener("click", () => home.classList.add("show"));
+    formCloseBtn.addEventListener("click", () => home.classList.remove("show"));
+
+    const welcomeOverlay = document.querySelector(".welcome-overlay");
+    setTimeout(() => {
+        welcomeOverlay.classList.add("hidden");
+    }, 1000);
+
+    pwShowHide.forEach((icon) => {
+        icon.addEventListener("click", () => {
+            let getPwInput = icon.parentElement.querySelector("input");
+            if (getPwInput.type === "password") {
+                getPwInput.type = "text";
+                icon.classList.replace("uil-eye-slash", "uil-eye");
+            } else {
+                getPwInput.type = "password";
+                icon.classList.replace("uil-eye", "uil-eye-slash");
+            }
+        });
+    });
+
+    // Toggle between Login and Sign Up forms
+    signUpLink.addEventListener("click", () => {
+        loginForm.style.display = "none";
+        signUpForm.style.display = "block";
+    });
+
+    loginLink.addEventListener("click", () => {
+        signUpForm.style.display = "none";
+        loginForm.style.display = "block";
+    });
+
+    document.querySelectorAll("form").forEach(form => {
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            if (this.querySelector("#confirmPassword")) {
+                // Sign up form validation
+                var password = document.getElementById("password").value;
+                var confirmPassword = document.getElementById("confirmPassword").value;
+                var errorMessage = document.getElementById("error_message");
+
+                if (password !== confirmPassword) {
+                    errorMessage.textContent = "Passwords do not match";
+                    return;
+                }
+                errorMessage.textContent = "";
+            } else {
+                // Sign in form submission
+                let email = document.getElementById("signin_email").value;
+                let password = document.getElementById("signin_pass").value;
+
+                fetch('https://3dd8-41-236-219-177.ngrok-free.app/signin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
+                .then(data => console.log('Response:', data))
+                .catch(error => console.error('There was a problem with the fetch operation:', error));
+            }
+            window.location.href = "nd2/";
+        });
+    });
+});
+
+    </script>
+</body>
+</html>
